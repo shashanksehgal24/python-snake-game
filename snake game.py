@@ -1,11 +1,8 @@
-author = 'CodeWithHarry'
 
-#Importing The Modules
 import pygame
 import random
 import os
 
-#Initialization
 pygame.mixer.init()
 pygame.init()
 
@@ -36,10 +33,8 @@ pygame.mixer.music.load('music/wc.mp3')
 pygame.mixer.music.play(100)
 pygame.mixer.music.set_volume(.6)
 
-#Variables For The Game
 clock = pygame.time.Clock()
 font = pygame.font.SysFont('Harrington', 35)
-
 def text_screen(text, color, x, y):
    screen_text = font.render(text, True, color)
    gameWindow.blit(screen_text, [x,y])
@@ -47,10 +42,6 @@ def text_screen(text, color, x, y):
 def plot_snake(gameWindow, color, snk_list, snake_size):
    for x,y in snk_list:
        pygame.draw.rect(gameWindow, color, [x, y, snake_size, snake_size])
-
-
-#Welcome Screen
-
 def welcome():
     exit_game = False
     while not exit_game:
@@ -81,18 +72,15 @@ def gameloop():
    snk_list = []
    snk_length = 1
 
-#Highscore Build
    if(not os.path.exists("highscore.txt")):
        with open("highscore.txt", "w") as f:
            f.write("0")
    with open("highscore.txt", "r") as f:
             highscore = f.read()
 
-#Food
    food_x = random.randint(20, screen_width / 2)
    food_y = random.randint(20, screen_height / 2)
 
-#Game Variables
    score = 0
    init_velocity = 5
    snake_size = 30
